@@ -26,49 +26,27 @@ public class SHAHashing {
             switch (shaHashingType) {
                 case SHA_1:
                     md = MessageDigest.getInstance("SHA-1");
-                    md.update(Salt.getSalt());
-                    bytes = md.digest(string.getBytes());
-                    sb = new StringBuilder();
-                    for(int i=0; i< bytes.length ;i++)
-                    {
-                        sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                    }
-                    generatedPassword = sb.toString();
                     break;
                 case SHA_256:
                     md = MessageDigest.getInstance("SHA-256");
-                    md.update(Salt.getSalt());
-                    bytes = md.digest(string.getBytes());
-                    sb = new StringBuilder();
-                    for(int i=0; i< bytes.length ;i++)
-                    {
-                        sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                    }
-                    generatedPassword = sb.toString();
                     break;
                 case SHA_384:
                     md = MessageDigest.getInstance("SHA-384");
-                    md.update(Salt.getSalt());
-                    bytes = md.digest(string.getBytes());
-                    sb = new StringBuilder();
-                    for(int i=0; i< bytes.length ;i++)
-                    {
-                        sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                    }
-                    generatedPassword = sb.toString();
                     break;
                 case SHA_512:
                     md = MessageDigest.getInstance("SHA-512");
-                    md.update(Salt.getSalt());
-                    bytes = md.digest(string.getBytes());
-                    sb = new StringBuilder();
-                    for(int i=0; i< bytes.length ;i++)
-                    {
-                        sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                    }
-                    generatedPassword = sb.toString();
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + shaHashingType);
             }
+            md.update(Salt.getSalt());
+            bytes = md.digest(string.getBytes());
+            sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = sb.toString();
         }
         catch (NoSuchAlgorithmException e)
         {

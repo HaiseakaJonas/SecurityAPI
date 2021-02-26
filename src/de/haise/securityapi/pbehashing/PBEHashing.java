@@ -16,7 +16,7 @@ public class PBEHashing {
         this.string = string;
     }
 
-    public String generateStorngPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
+    public String generate(String password) throws NoSuchAlgorithmException, InvalidKeySpecException
     {
         int iterations = 1000;
         char[] chars = password.toCharArray();
